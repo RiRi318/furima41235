@@ -36,7 +36,7 @@ Things you may want to cover:
 | lastname           | string | null: false |
 | katakana_firstname | string | null: false |
 | katakana_lastname  | string | null: false |
-| birthday           | string | null: false | 
+| birthday           | date   | null: false | 
 
 ### Association
 
@@ -60,28 +60,30 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one :orders_user
-- has_one :comments
 
 ### orders テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
-| shipping_address   | string     | null: false                    |
+
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
+- has_one :address
 
-### comments テーブル
+### address テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| content            | text       | null: false                    |
-| user               | references | null: false, foreign_key: true |
-| item               | references | null: false, foreign_key: true |
-| order              | references | null: false, foreign_key: true |
+| postal_code        | string     | null: false                    |
+| state              | string     | null: false                    |
+| city               | string     | null: false                    |
+| street_address     | string     | null: false                    |
+| address_line       | string     | null: false                    |
+| call               | string     | null: false                    |
 
 ### Association
 - belongs_to :user
-- belongs_to :item
+- belongs_to :address
