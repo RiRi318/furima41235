@@ -40,8 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items_user
-- has_many :orders_user
+- has_many :users
+- has_many :users
 
 ### items テーブル
 | Column             | Type   | Options     |
@@ -59,7 +59,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :orders_user
+- has_one :user
 
 ### orders テーブル
 | Column             | Type   | Options     |
@@ -78,12 +78,12 @@ Things you may want to cover:
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
+| region_id          | integer    | null: false                    |
 | state              | string     | null: false                    |
-| city               | string     | null: false                    |
 | street_address     | string     | null: false                    |
-| address_line       | string     | null: false                    |
+| building_name      | string     | null: false                    |
 | call               | string     | null: false                    |
+| order_user         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :address
