@@ -79,7 +79,7 @@ Things you may want to cover:
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
 | region_id          | integer    | null: false                    |
-| state              | string     | null: false                    |
+| region_city        | string     | null: false                    |
 | street_address     | string     | null: false                    |
 | building_name      | string     |                                |
 | call               | string     | null: false                    |
