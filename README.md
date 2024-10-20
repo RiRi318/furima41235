@@ -32,14 +32,16 @@ Things you may want to cover:
 | nickname           | string | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
-| first name         | string | null: false |
-| last name          | string | null: false |
-| birth day          | string | null: false | 
+| firstname          | string | null: false |
+| lastname           | string | null: false |
+| katakana_firstname | string | null: false |
+| katakana_lastname  | string | null: false |
+| birthday           | string | null: false | 
 
 ### Association
 
-- has_many :items_users
-- has_many :orders_users
+- has_many :items_user
+- has_many :orders_user
 
 ### items テーブル
 | Column             | Type   | Options     |
@@ -50,14 +52,14 @@ Things you may want to cover:
 | situation_id       | integer| null: false |
 | delivery_id        | integer| null: false |
 | region_id          | integer| null: false |
-| day_id             | integer| null: false |
+| deliveryday_id     | integer| null: false |
 | price              | integer| null: false |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :order_user
+- has_one :orders_user
 - has_one :comments
 
 ### orders テーブル
@@ -65,20 +67,21 @@ Things you may want to cover:
 | ------------------ | ------ | ----------- |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
+| shipping_address   | string     | null: false                    |
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 
 ### comments テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| contents           | text       | null: false                    |
+| content            | text       | null: false                    |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
-| orders             | references | null: false, foreign_key: true |
+| order              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 - belongs_to :item
