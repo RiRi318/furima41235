@@ -72,9 +72,9 @@ Things you may want to cover:
 
 - belongs_to :item
 - belongs_to :user
-- has_one :address
+- has_one :addresses
 
-### address テーブル
+### addresses テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
