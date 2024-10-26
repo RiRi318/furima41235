@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'ユーザー新規登録' do
+  context 'ユーザー新規登録' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -43,6 +43,26 @@ RSpec.describe User, type: :model do
       @user.password = '000000'
       @user.valid?
       expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers."
+    end
+    it 'passwordが6文字未満では登録できない' do
+      @user.password = '0000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)"
+    end
+    it '英字のみのパスワードでは登録できない' do
+      @user.password = 'aaaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers."
+    end
+    it '数字のみのパスワードでは登録できない' do
+      @user.password = '000000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers."
+    end
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password = 'A000000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
     it 'passwordが一致していなければ登録できない' do
       @user.password_confirmation = 'b000000'
