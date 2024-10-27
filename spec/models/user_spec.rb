@@ -5,14 +5,14 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  context 'ユーザーの保存' do
+  context '新規登録できるとき' do
     it 'すべてのバリデーションが通り、保存が成功すること' do
       expect(@user).to be_valid
       expect { @user.save }.to change(User, :count).by(1)
     end
   end
 
-  context 'ユーザー新規登録' do
+  context '新規登録できないとき' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
