@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -6,8 +8,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery
   belongs_to_active_hash :region
   belongs_to_active_hash :deliveryday
-  belongs_to_active_hash :user
-  has_one_attached :image
 
   validates :image, presence: true
   validates :name, presence: true
@@ -15,8 +15,8 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 1 ,message: "can't be blank" }
   validates :situation_id, numericality: { other_than: 1 ,message: "can't be blank" }
   validates :delivery_id, numericality: { other_than: 1 ,message: "can't be blank" }
-  validates :region_id, presence: true
-  validates :deliveryday_id, presence: true
+  validates :region_id, numericality: { other_than: 1 ,message: "can't be blank" }
+  validates :deliveryday_id, numericality: { other_than: 1 ,message: "can't be blank" }
   validates :price, presence: true
   validates :price, numericality: { message: 'is not a number' }
   validates :price, numericality: { greater_than_or_equal_to: 300, message: 'must be at least 300' }, if: -> { price.is_a?(Integer) }
