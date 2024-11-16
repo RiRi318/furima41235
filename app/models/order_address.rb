@@ -15,7 +15,7 @@ class OrderAddress
     validates :street_address, presence: true
     validates :call, presence: true
     validates :call, format: { with: VALID_CALL_REGEX,message: "is invalid. Please enter numbers only"}
-    validates :token, presence: true
+    validates :token
   end
 
   def save
