@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :postal_code, :region_id, :region_city, :street_address, :building_name, :call, :order
+  attr_accessor :item_id, :user_id, :postal_code, :region_id, :region_city, :street_address, :building_name, :call, :order, :token
 
   VALID_POSTAL_CODE_REGEX = /\A[0-9]{3}-[0-9]{4}\z/
   VALID_CALL_REGEX = /\A\d{10,11}\z/
@@ -15,6 +15,7 @@ class OrderAddress
     validates :street_address, presence: true
     validates :call, presence: true
     validates :call, format: { with: VALID_CALL_REGEX,message: "is invalid. Please enter numbers only"}
+    validates :token, presence: true
   end
 
   def save
